@@ -1,7 +1,6 @@
 import './App.css'
 
-//CHANGE ME
-const domainName = "86ccdd16b764.ngrok.app";
+const domainName = import.meta.env.NGROK_DOMAIN
 
 const publicKeyCreate = {
   publicKey: {

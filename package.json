@@ -8,9 +8,11 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "setup:ngrok": "bash ./scripts/setup-ngrok.sh"
+    "setup:ngrok": "bash ./scripts/setup-ngrok.sh",
+    "serve": "bash ./scripts/serve-ngrok.sh"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "ngrok": "^5.0.0-beta.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
