@@ -1,18 +1,22 @@
 import './App.css'
 
 const domainName = import.meta.env.NGROK_DOMAIN
+const testUser = {
+  name : "TestUser",
+  displayName : "Test User"
+}
 
 const publicKeyCreate = {
   publicKey: {
     challenge: new Uint8Array(16),
     rp: {
       id: domainName,
-      name: "udi inc"
+      name: "WebAuthN Test Domain"
     },
     user: {
       id: new Uint8Array([1,2,3,4,5,6]), 
-      name: "kuki",
-      displayName: "kuki puki"
+      name: testUser.name,
+      displayName: testUser.displayName
     },
     pubKeyCredParams: [ {
       type: "public-key", 
@@ -31,15 +35,15 @@ var publicKeyWrite = {
   publicKey : {
     user: {
       id: new Uint8Array([1,2,3,4,5,6]), 
-      name: "kuki",
-      displayName: "kuki puki"
+      name: testUser.name,
+      displayName: testUser.displayName
     },
     challenge: new Uint8Array(16),
     rpId: domainName,
     userVerification: "required",
     extensions: {
       largeBlob: {
-        write: new TextEncoder().encode("Hello Dumbass")
+        write: new TextEncoder().encode("Super Secret Password")
     }
   },
   allowCredentials: []
@@ -50,8 +54,8 @@ const publicKeyRead = {
   publicKey : {
     user: {
       id: new Uint8Array([1,2,3,4,5,8]), 
-      name: "kooki",
-      displayName: "kuki puki"
+      name: testUser.name,
+      displayName: testUser.displayName
     },
     challenge: new Uint8Array(16),
     rpId: domainName,
