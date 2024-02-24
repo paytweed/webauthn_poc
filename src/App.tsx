@@ -25,7 +25,7 @@ const publicKeyCreate = {
   ],
     extensions: {
       largeBlob: {
-        support: "required",
+        //support: "required",
       },
     }
   }
@@ -70,14 +70,11 @@ const publicKeyRead = {
 } as CredentialRequestOptions
 
 async function createCredential() {
-  console.log("createCredential");
+  console.log("Creating Credentials");
 
   const publicKeyCred = await navigator.credentials.create(publicKeyCreate) as PublicKeyCredential;
   const res = publicKeyCred.getClientExtensionResults()
-
-  console.log(JSON.stringify(publicKeyCred))
   console.log(JSON.stringify(res))
-
   return publicKeyCred.rawId;
 }
 
@@ -112,7 +109,7 @@ setTimeout(async() => {
     console.log(err)
     return;
   })
-  }, 3000) //Fixing a Safari bug
+  }, 500) //Fixing a Safari bug
 }
 
 async function readBlob() {
@@ -124,13 +121,18 @@ async function readBlob() {
       const res : any = (cred as PublicKeyCredential).getClientExtensionResults()
       console.log(new TextDecoder().decode(res.largeBlob.blob))
     })
-    .catch((err) => {console.log(err)})}, 3000) //Fixing a Safari bug
+    .catch((err) => {console.log(err)})}, 500) //Fixing a Safari bug
   }
 
 async function testWebAuthN() {
   console.log("Testing webAuthN");
   const user = await createCredential();
   await writeBlob(user);
+}
+
+
+async function checkLargeBlobSupport() {
+
 }
 
 function App() {
