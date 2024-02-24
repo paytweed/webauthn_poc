@@ -119,7 +119,12 @@ async function readBlob() {
     navigator.credentials.get(publicKeyRead)
     .then((cred) => {
       const res : any = (cred as PublicKeyCredential).getClientExtensionResults()
-      console.log(new TextDecoder().decode(res.largeBlob.blob))
+      if(res.largeBlob.blob == undefined) {
+        console.log("Could not read the largeBlob content")
+      }
+      else {
+        console.log(`The largeBlob's content is: ${new TextDecoder().decode(res.largeBlob.blob)}`)
+      }
     })
     .catch((err) => {console.log(err)})}, 500) //Fixing a Safari bug
   }
