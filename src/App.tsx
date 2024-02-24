@@ -130,11 +130,6 @@ async function testWebAuthN() {
   await writeBlob(user);
 }
 
-
-async function checkLargeBlobSupport() {
-
-}
-
 function App() {
   return (
     <>
